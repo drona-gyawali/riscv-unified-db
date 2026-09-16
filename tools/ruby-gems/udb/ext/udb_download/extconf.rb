@@ -92,8 +92,8 @@ espresso_file = File.join(espresso_dir, "espresso")
 
 unless File.exist?(espresso_file)
   FileUtils.mkdir_p(espresso_dir)
-  url_str = "https://github.com/#{GITHUB_REPO}/releases/download/#{espresso_version}/espresso-#{os_ext}-#{cpu}" # CHANGED
-  $stderr.puts "Downloading espresso (#{espresso_version}, #{os_ext}, #{cpu}) from GitHub releases..." # CHANGED
+  url_str = "https://github.com/#{GITHUB_REPO}/releases/download/#{espresso_version}/espresso-#{os_ext}-#{cpu}"
+  $stderr.puts "Downloading espresso (#{espresso_version}, #{os_ext}, #{cpu}) from GitHub releases..."
   $stderr.puts "  URL: #{url_str}"
   File.binwrite(espresso_file, download_with_redirects(url_str))
   File.chmod(0o755, espresso_file)
@@ -101,7 +101,7 @@ unless File.exist?(espresso_file)
 
   # Download and verify checksum
   checksum_url_str =
-    "https://github.com/#{GITHUB_REPO}/releases/download/#{espresso_version}/espresso-#{os_ext}-#{cpu}.checksum" # CHANGED
+    "https://github.com/#{GITHUB_REPO}/releases/download/#{espresso_version}/espresso-#{os_ext}-#{cpu}.checksum"
   checksum_file = File.join(espresso_dir, "espresso.checksum")
   $stderr.puts "  Downloading checksum..."
   checksum_body = download_with_redirects(checksum_url_str)
@@ -131,8 +131,8 @@ eqntott_file = File.join(eqntott_dir, "eqntott")
 
 unless File.exist?(eqntott_file)
   FileUtils.mkdir_p(eqntott_dir)
-  url_str = "https://github.com/#{GITHUB_REPO}/releases/download/#{eqntott_version}/eqntott-#{os_ext}-#{cpu}" # CHANGED
-  $stderr.puts "Downloading eqntott (#{eqntott_version}, #{os_ext}, #{cpu}) from GitHub releases..." # CHANGED
+  url_str = "https://github.com/#{GITHUB_REPO}/releases/download/#{eqntott_version}/eqntott-#{os_ext}-#{cpu}"
+  $stderr.puts "Downloading eqntott (#{eqntott_version}, #{os_ext}, #{cpu}) from GitHub releases..."
   $stderr.puts "  URL: #{url_str}"
   File.binwrite(eqntott_file, download_with_redirects(url_str))
   File.chmod(0o755, eqntott_file)
@@ -140,7 +140,7 @@ unless File.exist?(eqntott_file)
 
   # Download and verify checksum
   checksum_url_str =
-    "https://github.com/#{GITHUB_REPO}/releases/download/#{eqntott_version}/eqntott-#{os_ext}-#{cpu}.checksum" # CHANGED
+    "https://github.com/#{GITHUB_REPO}/releases/download/#{eqntott_version}/eqntott-#{os_ext}-#{cpu}.checksum"
   checksum_file = File.join(eqntott_dir, "eqntott.checksum")
   $stderr.puts "  Downloading checksum..."
   checksum_body = download_with_redirects(checksum_url_str)
@@ -170,8 +170,8 @@ must_file = File.join(must_dir, "must")
 
 unless File.exist?(must_file)
   FileUtils.mkdir_p(must_dir)
-  url_str = "https://github.com/#{GITHUB_REPO}/releases/download/#{must_version}/must-#{os_ext}-#{cpu}" # CHANGED
-  $stderr.puts "Downloading must (#{must_version}, #{os_ext}, #{cpu}) from GitHub releases..." # CHANGED
+  url_str = "https://github.com/#{GITHUB_REPO}/releases/download/#{must_version}/must-#{os_ext}-#{cpu}"
+  $stderr.puts "Downloading must (#{must_version}, #{os_ext}, #{cpu}) from GitHub releases..."
   $stderr.puts "  URL: #{url_str}"
   File.binwrite(must_file, download_with_redirects(url_str))
   File.chmod(0o755, must_file)
@@ -179,7 +179,7 @@ unless File.exist?(must_file)
 
   # Download and verify checksum
   checksum_url_str =
-    "https://github.com/#{GITHUB_REPO}/releases/download/#{must_version}/must-#{os_ext}-#{cpu}.checksum" # CHANGED
+    "https://github.com/#{GITHUB_REPO}/releases/download/#{must_version}/must-#{os_ext}-#{cpu}.checksum"
   checksum_file = File.join(must_dir, "must.checksum")
   $stderr.puts "  Downloading checksum..."
   checksum_body = download_with_redirects(checksum_url_str)
@@ -205,12 +205,12 @@ end
 # ---------------------------------------------------------------------------
 z3_version = Udb::Z3_VERSION
 z3_dir  = File.join(xdg_cache, "udb", "z3", z3_version, cpu)
-z3_file = File.join(z3_dir, "libz3.#{lib_ext}") # CHANGED
+z3_file = File.join(z3_dir, "libz3.#{lib_ext}")
 
 unless File.exist?(z3_file)
   FileUtils.mkdir_p(z3_dir)
-  url_str = "https://github.com/#{GITHUB_REPO}/releases/download/#{z3_version}/libz3-#{os_ext}-#{cpu}.#{lib_ext}" # CHANGED
-  $stderr.puts "Downloading Z3 (#{z3_version}, #{os_ext}, #{cpu}) from GitHub releases..." # CHANGED
+  url_str = "https://github.com/#{GITHUB_REPO}/releases/download/#{z3_version}/libz3-#{os_ext}-#{cpu}.#{lib_ext}"
+  $stderr.puts "Downloading Z3 (#{z3_version}, #{os_ext}, #{cpu}) from GitHub releases..."
   $stderr.puts "  URL: #{url_str}"
   File.binwrite(
     z3_file,
@@ -220,7 +220,7 @@ unless File.exist?(z3_file)
 
   # Download and verify checksum
   checksum_url_str =
-    "https://github.com/#{GITHUB_REPO}/releases/download/#{z3_version}/libz3-#{os_ext}-#{cpu}.checksum" # CHANGED
+    "https://github.com/#{GITHUB_REPO}/releases/download/#{z3_version}/libz3-#{os_ext}-#{cpu}.checksum"
   checksum_file = File.join(z3_dir, "libz3.checksum")
   $stderr.puts "  Downloading checksum..."
   checksum_body = download_with_redirects(checksum_url_str)
