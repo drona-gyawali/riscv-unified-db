@@ -101,6 +101,10 @@ jobs:
             arch: x64
           - runner: ubuntu-24.04-arm
             arch: arm64
+          - runner: macos-15
+            arch: x64
+          - runner: macos-15-xlarge
+            arch: arm64
     runs-on: ${{ matrix.runner }}
     steps:
       - name: Checkout repository
@@ -116,33 +120,6 @@ jobs:
             ./bin/chore update eqntott -n
           fi
 
-  build-z3:
-    needs: detect-tools
-    if: contains(fromJson(needs.detect-tools.outputs.tools), 'z3')
-    name: Build Z3 (${{ matrix.arch }})
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - runner: ubuntu-24.04
-            arch: x64
-          - runner: ubuntu-24.04-arm
-            arch: arm64
-    runs-on: ${{ matrix.runner }}
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-
-      - name: Build and upload Z3 for ${{ matrix.arch }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          if [ "${{ inputs.force }}" = "true" ]; then
-            ./bin/chore update z3 -n -f
-          else
-            ./bin/chore update z3 -n
-          fi
-
   build-espresso:
     needs: detect-tools
     if: contains(fromJson(needs.detect-tools.outputs.tools), 'espresso')
@@ -154,6 +131,10 @@ jobs:
           - runner: ubuntu-24.04
             arch: x64
           - runner: ubuntu-24.04-arm
+            arch: arm64
+          - runner: macos-15
+            arch: x64
+          - runner: macos-15-xlarge
             arch: arm64
     runs-on: ${{ matrix.runner }}
     steps:
@@ -182,6 +163,10 @@ jobs:
             arch: x64
           - runner: ubuntu-24.04-arm
             arch: arm64
+          - runner: macos-15
+            arch: x64
+          - runner: macos-15-xlarge
+            arch: arm64
     runs-on: ${{ matrix.runner }}
     steps:
       - name: Checkout repository
@@ -195,4 +180,35 @@ jobs:
             ./bin/chore update must -n -f
           else
             ./bin/chore update must -n
+          fi
+
+  build-z3:
+    needs: detect-tools
+    if: contains(fromJson(needs.detect-tools.outputs.tools), 'z3')
+    name: Build and upload Z3 for ${{ matrix.arch }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-24.04
+            arch: x64
+          - runner: ubuntu-24.04-arm
+            arch: arm64
+          - runner: macos-15
+            arch: x64
+          - runner: macos-15-xlarge
+            arch: arm64
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Build and upload Z3 for ${{ matrix.runner }}-${{ matrix.arch }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ inputs.force }}" = "true" ]; then
+            ./bin/chore update z3 -n -f
+          else
+            ./bin/chore update z3 -n
           fi
